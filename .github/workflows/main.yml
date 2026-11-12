@@ -1,1 +1,24 @@
+name: Build IPA for TrollStore
 
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Test rules and build IPA
+        run: bash scripts/build-ipa.sh
+
+      - name: Downloadable IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: ChanDauSo-TrollStore
+          path: build/ChanDauSo.ipa
+          if-no-files-found: error
