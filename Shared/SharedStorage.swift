@@ -16,6 +16,6 @@ enum SharedStorage {
     }
     static func write(_ set: RuleSet) throws {
         let data = try JSONEncoder().encode(set)
-        try data.write(to: fileURL(), options: [.atomic, .completeUntilFirstUserAuthentication])
+       try data.write(to: fileURL(), options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])
     }
 }
